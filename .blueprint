@@ -1,0 +1,23 @@
+created:
+    - database/factories/ServiceFactory.php
+    - database/factories/ClientFactory.php
+    - database/factories/ProjectFactory.php
+    - database/factories/ProjectAssetsFactory.php
+    - database/factories/ContactsFactory.php
+    - database/migrations/2024_07_06_231350_create_services_table.php
+    - database/migrations/2024_07_06_231351_create_clients_table.php
+    - database/migrations/2024_07_06_231352_create_projects_table.php
+    - database/migrations/2024_07_06_231353_create_project_assets_table.php
+    - database/migrations/2024_07_06_231354_create_contacts_table.php
+    - app/Models/Service.php
+    - app/Models/Client.php
+    - app/Models/Project.php
+    - app/Models/Project_assets.php
+    - app/Models/contacts.php
+models:
+    User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
+    Service: { uuid: uuid, type: 'enum:marketing,production', name: string, description: text, softdeletes: softDeletes }
+    Client: { uuid: uuid, logo: 'string nullable', name: string, description: text, softdeletes: softDeletes }
+    Project: { uuid: uuid, client_id: 'id foreign:clients', service_id: 'id foreign:service', name: string, description: text, softdeletes: softDeletes }
+    Project_assets: { uuid: uuid, project_id: 'id foreign:projects', link: string, softdeletes: softDeletes }
+    contacts: { uuid: uuid, service_id: 'id foreign:service', name: string, business_name: string, email: string, no_whatsapp: string, description: text, status: 'enum:unread,read,contacted default:unread' }

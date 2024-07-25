@@ -1,0 +1,39 @@
+models:
+    Service:
+        uuid: uuid
+        type: enum:marketing,production
+        name: string
+        description: text
+        softDeletes
+    
+    Client:
+        uuid: uuid
+        photo: string
+        logo: string
+        name: string
+        description: text
+        softDeletes
+
+    Project:
+        uuid: uuid
+        client_id: id foreign:clients
+        service_id: id foreign:service
+        name: string
+        description: text
+        softDeletes
+
+    Project_assets:
+        uuid: uuid
+        project_id: id foreign:projects
+        link: string
+        softDeletes
+
+    Contact:
+        uuid: uuid
+        service_id: id foreign:service
+        name: string
+        business_name: string
+        email: string
+        no_whatsapp: string
+        description: text
+        status: enum:unread,read,contacted default:unread
